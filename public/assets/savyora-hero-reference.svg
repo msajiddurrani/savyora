@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="240 95 370 440" preserveAspectRatio="none">
+  <defs>
+    <clipPath id="athlete-cutout" clipPathUnits="userSpaceOnUse">
+      <path d="M386 102 C405 99 426 113 432 136 C439 160 431 181 445 198 C470 201 494 213 512 230 C529 245 540 269 548 291 C554 310 565 329 575 345 C581 361 574 377 561 389 C546 402 531 411 514 416 C507 420 500 424 491 426 C487 456 489 490 492 520 L338 520 C342 491 343 459 342 431 C325 426 310 419 298 410 C284 400 272 387 263 371 C253 353 246 337 246 321 C248 305 255 285 261 268 C270 249 282 234 299 224 C315 213 334 205 354 199 C368 183 368 163 365 143 C362 123 371 107 386 102 Z"/>
+    </clipPath>
+    <filter id="mono" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+  <image href="/assets/savyora-hero-reference.png" x="0" y="0" width="846" height="638" clip-path="url(#athlete-cutout)" filter="url(#mono)"/>
+</svg>
