@@ -27,7 +27,7 @@ function SpaceCard({space,index,onSelect,active,reduced,disabled=false}:{space:t
   whileInView={{opacity:1,y:0,rotateX:0}}
   viewport={{once:true,amount:.1}}
   transition={{duration:.58,delay:index*.035,ease:[.22,1,.36,1]}}
-  whileHover={reduced?undefined:{y:-12,z:34,rotateX:-5,rotateY:3,scale:1.035,boxShadow:'0 26px 70px rgba(136,31,198,.38)'}}>
+  whileHover={reduced?undefined:{y:-12,z:34,rotateX:-5,rotateY:3,scale:1.035,boxShadow:'0 24px 60px rgba(157,123,255,.25)'}}>
   <span className="facility-image"><img src={space.image} alt="" loading="lazy"/><i className="facility-shine"/><span>{space.n} / {space.cat}</span><b aria-hidden="true">↗</b></span>
   <span className="facility-info"><strong>{space.name}</strong><span>{space.desc}</span></span>
  </motion.button>

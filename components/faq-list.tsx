@@ -28,8 +28,10 @@ export default function FAQList({ limit }: { limit?: number }) {
   const [question, answer] = visibleQuestions[Math.min(active, visibleQuestions.length - 1)] || questions[0]
 
   return <div className="faq-gallery">
-    <article className="faq-feature-card" style={{ backgroundImage: `linear-gradient(90deg,rgba(9,7,12,.97) 4%,rgba(9,7,12,.79) 62%,rgba(9,7,12,.48)),url('${cardImages[Math.min(active, cardImages.length - 1)]}')` }}>
-      <div className="faq-feature-meta"><span>ANSWER / {String(active + 1).padStart(2, '0')}</span><span>THE SAVYORA GUIDE</span></div>
+    <article className="faq-feature-card" style={{ backgroundImage: `linear-gradient(90deg,rgba(7,7,9,.97) 4%,rgba(10,9,14,.88) 55%,rgba(7,7,9,.65)),url('${cardImages[Math.min(active, cardImages.length - 1)]}')` }}>
+      <div className="faq-feature-meta">
+        <span>ANSWER / {String(active + 1).padStart(2, '0')} — THE SAVYORA GUIDE</span>
+      </div>
       <div className="faq-feature-copy" aria-live="polite">
         <span className="eyebrow"><i /> A GOOD PLACE TO START</span>
         <h3>{question}</h3>
@@ -39,7 +41,7 @@ export default function FAQList({ limit }: { limit?: number }) {
       <div className="faq-feature-index">S / 0{active + 1}</div>
     </article>
     <div className="faq-question-rail" role="group" aria-label="Choose a frequently asked question">
-      {visibleQuestions.map(([title], i) => <button key={title} className={`faq-question-card ${i === active ? 'is-active' : ''}`} type="button" aria-pressed={i === active} onClick={() => setActive(i)} style={{ backgroundImage: `linear-gradient(0deg,rgba(8,6,11,.93),rgba(8,6,11,.28)),url('${cardImages[i % cardImages.length]}')` }}>
+      {visibleQuestions.map(([title], i) => <button key={title} className={`faq-question-card ${i === active ? 'is-active' : ''}`} type="button" aria-pressed={i === active} onClick={() => setActive(i)} style={{ backgroundImage: `linear-gradient(0deg,rgba(7,7,9,.94),rgba(13,11,20,.65)),url('${cardImages[i % cardImages.length]}')` }}>
         <span className="faq-question-count">0{i + 1} / FAQ</span>
         <span className="faq-question-title">{title}</span>
         <span className="faq-question-open" aria-hidden="true">{i === active ? '↙' : '↗'}</span>

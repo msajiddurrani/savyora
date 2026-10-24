@@ -64,11 +64,9 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         Skip to content
       </a>
 
-      {/* Redesigned Floating Island Navbar */}
+      {/* Sleek Sticky Glass Bar Navbar */}
       <header
-        className={`masthead ${pathname === '/' ? 'masthead-home' : ''} ${
-          scrolled ? 'masthead-scrolled' : ''
-        }`}
+        className={`masthead ${scrolled ? 'masthead-scrolled' : ''}`}
       >
         <div className="masthead-inner">
           <Brand />
@@ -84,7 +82,6 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
                   aria-current={isActive ? 'page' : undefined}
                 >
                   {label}
-                  {isActive && <span className="nav-active-pill" />}
                 </Link>
               )
             })}

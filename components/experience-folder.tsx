@@ -27,10 +27,12 @@ export default function ExperienceFolder() {
       <div className="folder-stage">
         <div className="folder-shadow" aria-hidden="true"/>
         <div className="folder-back" aria-hidden="true"/>
-        {stories.map((story, index) => <motion.a key={story.number} href={story.href} className={`folder-card folder-card-${index + 1}`} style={reduced ? undefined : { y: ys[index], rotate: [-8, 0, 8][index], z: [-70, 0, 65][index] }}>
-          <div className="folder-card-image" style={{ backgroundImage: `linear-gradient(180deg, transparent 23%, rgba(11, 9, 26, 0.94)), url(${story.image})` }} />
-          <div className="folder-card-copy"><span>{story.label} <b>{story.number}</b></span><h3>{story.title}</h3><p>{story.detail}</p><i aria-hidden="true">↗</i></div>
-        </motion.a>)}
+        <div className="folder-cards-tray">
+          {stories.map((story, index) => <motion.a key={story.number} href={story.href} className={`folder-card folder-card-${index + 1}`} style={reduced ? undefined : { y: ys[index], rotate: [-8, 0, 8][index], z: [-70, 0, 65][index] }}>
+            <div className="folder-card-image" style={{ backgroundImage: `linear-gradient(180deg, transparent 23%, rgba(10, 9, 14, 0.95)), url(${story.image})` }} />
+            <div className="folder-card-copy"><span>{story.label} <b>{story.number}</b></span><h3>{story.title}</h3><p>{story.detail}</p><i aria-hidden="true">↗</i></div>
+          </motion.a>)}
+        </div>
         <div className="folder-pocket" aria-hidden="true"><div className="folder-pocket-sheen"/><div className="folder-tab">THE SAVYORA EDIT <span>SCROLL TO UNFOLD ↓</span></div></div>
       </div>
     </div>
