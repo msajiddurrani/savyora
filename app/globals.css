@@ -631,10 +631,10 @@ h1 em, h2 em, h3 em, p em,
 .reference-hero .mint-hero-center {
   position: absolute;
   z-index: 2;
-  top: 170px;
+  top: 160px;
   bottom: 0;
   left: 50%;
-  width: min(420px, 40vw);
+  width: min(440px, 42vw);
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
@@ -642,24 +642,15 @@ h1 em, h2 em, h3 em, p em,
   pointer-events: none;
 }
 
-/* Athlete with CSS filter neutralizing green rim lighting */
+/* Athlete with rich purple rim lighting */
 .reference-hero .mint-athlete {
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center bottom;
-  filter: saturate(0.75) contrast(1.08) hue-rotate(-15deg);
-  mask-image: radial-gradient(ellipse 95% 85% at 50% 45%, #000 65%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 45%, #000 65%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%);
-}
-
-.reference-hero .mint-hero-center:after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(157, 123, 255, 0.22) 90%);
-  mix-blend-mode: color;
-  pointer-events: none;
+  filter: contrast(1.04) brightness(1.02);
+  mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
 }
 
 .athlete-bottom-shade {
@@ -3594,20 +3585,38 @@ h1 em, h2 em, h3 em, p em,
 
   .reference-hero,
   .home-hero {
-    min-height: 680px;
-    height: 720px;
-    padding-top: 95px;
+    min-height: 600px;
+    height: 640px;
+    padding-top: 85px;
   }
-  .reference-hero .mint-hero-title { top: 88px; }
-  .reference-hero .mint-hero-title h1 { font-size: clamp(32px, 6.2vw, 48px); }
-  .reference-hero .mint-hero-center { top: 180px; width: min(400px, 64vw); }
-  .reference-hero .stat-hours { left: calc(50% - 215px); top: 35%; }
-  .reference-hero .stat-sets { left: calc(50% - 235px); top: 56%; }
-  .reference-hero .stat-kcal { right: calc(50% - 215px); top: 35%; }
-  .reference-hero .stat-poses { right: calc(50% - 235px); top: 56%; }
-  .reference-hero .hero-stat-card { width: 92px; min-height: 98px; padding: 10px; }
-  .reference-hero .reference-proof { left: 4%; bottom: 5%; }
-  .reference-hero .reference-hero-actions { right: 4%; bottom: 5%; }
+  .reference-hero .mint-hero-title { top: 80px; }
+  .reference-hero .mint-hero-title h1 { font-size: clamp(30px, 6vw, 44px); }
+  .reference-hero .mint-hero-center {
+    top: 145px;
+    bottom: auto;
+    width: min(380px, 62vw);
+    height: min(380px, 62vw);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .reference-hero .mint-athlete {
+    object-position: center top;
+  }
+  .reference-hero .stat-hours { left: calc(50% - 215px); top: 32%; }
+  .reference-hero .stat-sets { left: calc(50% - 235px); top: 54%; }
+  .reference-hero .stat-kcal { right: calc(50% - 215px); top: 32%; }
+  .reference-hero .stat-poses { right: calc(50% - 235px); top: 54%; }
+  .reference-hero .hero-stat-card { width: 90px; min-height: 94px; padding: 10px; }
+  .reference-hero .reference-proof { display: none !important; }
+  .reference-hero .reference-hero-actions {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 22px;
+    right: auto;
+    z-index: 5;
+  }
 
   .social-bar-inner { gap: 16px; flex-wrap: wrap; justify-content: center; }
   .social-label { font-size: 10px; }
@@ -3655,28 +3664,60 @@ h1 em, h2 em, h3 em, p em,
 
   .reference-hero,
   .home-hero {
-    min-height: 720px;
-    height: 750px;
-    padding: 85px 16px 75px;
+    min-height: 560px;
+    height: clamp(560px, 86vh, 620px);
+    padding: 75px 12px 18px;
   }
-  .reference-hero .mint-hero-title { top: 80px; padding: 0 10px; }
-  .reference-hero .mint-hero-title h1 { font-size: clamp(30px, 8vw, 40px); line-height: 1.05; }
-  .reference-hero .mint-hero-center { top: 200px; width: min(340px, 88vw); }
-  .reference-hero .hero-stat-card { width: 78px; min-height: 84px; padding: 8px; border-radius: 13px; }
-  .reference-hero .hero-stat-card .stat-icon { width: 22px; height: 22px; margin-bottom: 2px; }
-  .reference-hero .hero-stat-card .stat-icon svg { width: 16px; height: 16px; }
+  .reference-hero .mint-hero-title {
+    top: 72px;
+    padding: 0 8px;
+    width: 100%;
+  }
+  .reference-hero .mint-hero-title h1 {
+    font-size: clamp(26px, 7.2vw, 36px);
+    line-height: 1.06;
+  }
+  .reference-hero .mint-hero-center {
+    top: 150px;
+    bottom: auto;
+    width: min(340px, 86vw);
+    height: min(340px, 86vw);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .reference-hero .mint-athlete {
+    object-position: center top;
+  }
+  .reference-hero .hero-stat-card {
+    width: 76px;
+    min-height: 80px;
+    padding: 7px 6px;
+    border-radius: 12px;
+  }
+  .reference-hero .hero-stat-card .stat-icon { width: 20px; height: 20px; margin-bottom: 2px; }
+  .reference-hero .hero-stat-card .stat-icon svg { width: 15px; height: 15px; }
   .reference-hero .hero-stat-card small { font-size: 8px; }
-  .reference-hero .hero-stat-card strong { font-size: 18px; }
-  .reference-hero .stat-hours { left: 4%; top: 36%; }
-  .reference-hero .stat-sets { left: 4%; top: 56%; }
-  .reference-hero .stat-kcal { right: 4%; top: 36%; }
-  .reference-hero .stat-poses { right: 4%; top: 56%; }
-  .reference-hero .reference-proof { left: 16px; bottom: 3%; gap: 8px; }
-  .reference-hero .reference-avatars img { width: 32px; height: 32px; margin-left: -10px; }
-  .reference-hero .reference-proof-text strong { font-size: 16px; }
-  .reference-hero .reference-proof-text span { font-size: 10px; }
-  .reference-hero .reference-hero-actions { right: 16px; bottom: 3%; }
-  .reference-hero .reference-start-button { height: 40px; padding: 0 16px; font-size: 11px; }
+  .reference-hero .hero-stat-card strong { font-size: 17px; }
+  .reference-hero .stat-hours { left: 8px; top: 175px; transform: rotate(-3deg); }
+  .reference-hero .stat-sets { left: 8px; top: 295px; transform: rotate(-3deg); }
+  .reference-hero .stat-kcal { right: 8px; top: 175px; transform: rotate(3deg); }
+  .reference-hero .stat-poses { right: 8px; top: 295px; transform: rotate(3deg); }
+  .reference-hero .reference-proof { display: none !important; }
+  .reference-hero .reference-hero-actions {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 18px;
+    right: auto;
+    z-index: 5;
+  }
+  .reference-hero .reference-start-button {
+    height: 42px;
+    padding: 0 20px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
 
   .social-bar-inner { gap: 14px; padding: 0 12px; }
   .social-label { display: none; }
