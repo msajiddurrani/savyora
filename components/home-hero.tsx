@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 const metrics = [
   {
@@ -86,7 +86,7 @@ const socialLinks = [
     className: 'social-item-whatsapp',
     svg: (
       <svg viewBox="0 0 24 24" className="social-svg" fill="currentColor" aria-hidden="true">
-        <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.979-.276-.101-.476-.15-.677.15-.2.301-.776.979-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.499-1.787-1.674-2.088-.176-.301-.019-.464.132-.614.136-.135.301-.351.451-.527.15-.176.2-.301.301-.502.101-.201.05-.377-.025-.527-.075-.15-.677-1.631-.928-2.233-.244-.587-.492-.507-.677-.517-.175-.009-.376-.011-.577-.011s-.527.075-.803.376c-.276.301-1.053 1.029-1.053 2.509s1.079 2.91 1.229 3.111c.15.201 2.123 3.242 5.144 4.548.718.311 1.279.497 1.716.636.722.23 1.379.197 1.899.12.579-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.176-1.43-.076-.125-.276-.201-.577-.351zM12.004 2C6.48 2 2 6.48 2 12c0 1.947.558 3.766 1.524 5.306L2 22l4.82-1.503A9.957 9.957 0 0 0 12.004 22C17.524 22 22 17.52 22 12s-4.476-10-9.996-10z"/>
+        <path fillRule="evenodd" clipRule="evenodd" d="M12.004 2C6.48 2 2 6.48 2 12c0 1.947.558 3.766 1.524 5.306L2 22l4.82-1.503A9.957 9.957 0 0 0 12.004 22C17.524 22 22 17.52 22 12s-4.476-10-9.996-10zm.006 18.25c-1.637 0-3.176-.446-4.508-1.226l-.323-.19-3.342 1.042 1.066-3.256-.208-.335A8.196 8.196 0 0 1 3.75 12c0-4.557 3.693-8.25 8.256-8.25 4.563 0 8.254 3.693 8.254 8.25 0 4.557-3.691 8.25-8.25 8.25zm4.81-6.136c-.264-.132-1.563-.77-1.805-.858-.242-.088-.418-.132-.594.132-.176.264-.682.858-.836 1.034-.154.176-.308.198-.572.066-.264-.132-1.115-.411-2.124-1.31-.785-.7-1.315-1.565-1.469-1.829-.154-.264-.016-.407.116-.538.119-.118.264-.308.396-.462.132-.154.176-.264.264-.44.088-.176.044-.33-.022-.462-.066-.132-.594-1.43-.814-1.958-.214-.515-.432-.445-.594-.453-.154-.008-.33-.01-.506-.01-.176 0-.462.066-.704.33-.242.264-.924.902-.924 2.2 0 1.298.946 2.552 1.078 2.728.132.176 1.862 2.842 4.51 3.987.63.272 1.122.435 1.505.557.633.202 1.21.173 1.665.105.508-.076 1.563-.638 1.783-1.254.22-.616.22-1.144.154-1.254-.066-.11-.242-.176-.506-.308z"/>
       </svg>
     ),
   },
@@ -96,47 +96,87 @@ export default function HomeHero() {
   const ref = useRef<HTMLElement>(null)
   const reduced = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, -14])
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -18])
+
+  const [tilt, setTilt] = useState({ x: 0, y: 0 })
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLElement>) => {
+    if (reduced) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    setTilt({ x: x * 6, y: -y * 6 })
+  }
+
+  const handlePointerLeave = () => {
+    setTilt({ x: 0, y: 0 })
+  }
 
   return (
     <>
-      <section className="home-hero reference-hero" ref={ref} aria-label="The Savyora Fitness Hero">
-        {/* Soft radial purple backlight behind athlete and title */}
+      <section
+        className="home-hero reference-hero"
+        ref={ref}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
+        aria-label="The Savyora Fitness Hero"
+      >
+        {/* Full-Screen Atmosphere Depth */}
+        <div className="hero-atmosphere-depth" aria-hidden="true" />
         <div className="hero-grid-glow" aria-hidden="true" />
-        <div className="athlete-ground-glow" aria-hidden="true" />
 
-        {/* Central headline scaled down ~15-20% for architectural elegance */}
-        <motion.div className="mint-hero-title" style={reduced ? undefined : { y: titleY }}>
-          <h1>
-            Sculpt <em>Your</em> Body
-            <br />
-            Elevate <em>Your</em> Spirit
+        {/* Image 4 Stacked 3D Layered Heading (No capsule, no sub-text) */}
+        <motion.div
+          className="mint-hero-title"
+          style={reduced ? undefined : { y: titleY }}
+        >
+          <h1 className="hero-headline image4-heading">
+            <span className="image4-line-1">Sculpt <em>Your</em> Body</span>
+            <span className="image4-line-2">Elevate <em>Your</em> Spirit</span>
           </h1>
         </motion.div>
 
-        {/* 4K Chiseled Athlete with green rim neutralized via CSS filter & gradient blend */}
-        <div className="mint-hero-center">
+        {/* 100% Isolated Transparent Cutout Bodybuilder (Zero Background) */}
+        <div
+          className="mint-hero-center"
+          style={
+            reduced
+              ? undefined
+              : {
+                  transform: `translateX(-50%) perspective(1000px) rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
+                }
+          }
+        >
           <img
             className="mint-athlete"
-            src="/assets/savyora-hero-athlete-4k.jpg"
-            alt="The Savyora Fitness athlete training with dumbbell plate"
+            src="/assets/savyora-hero-athlete-cutout.webp"
+            alt="The Savyora Fitness athlete"
             width={1024}
             height={1024}
             fetchPriority="high"
           />
-          <div className="athlete-bottom-shade" aria-hidden="true" />
         </div>
 
-        {/* 4 Floating Stat Cards with sleek ±3deg subtle rotation */}
-        {metrics.map((metric) => (
-          <div key={metric.label} className={`hero-stat-card ${metric.position}`}>
+        {/* 4 Floating 3D Stat Cards */}
+        {metrics.map((metric, i) => (
+          <div
+            key={metric.label}
+            className={`hero-stat-card ${metric.position}`}
+            style={
+              reduced
+                ? undefined
+                : {
+                    transform: `perspective(800px) translateZ(${15 + i * 4}px) rotateY(${tilt.x * 0.7}deg)`,
+                  }
+            }
+          >
             <span className="stat-icon">{metric.icon}</span>
             <small>{metric.label}</small>
             <strong>{metric.value}</strong>
           </div>
         ))}
 
-        {/* Bottom Left: Social proof with 3 member avatars and 15k+ counter */}
+        {/* Bottom Left: Social proof */}
         <div className="reference-proof">
           <div className="reference-avatars">
             <img src="/assets/savyora-community.webp" alt="Savyora member avatar" />
@@ -149,7 +189,7 @@ export default function HomeHero() {
           </div>
         </div>
 
-        {/* Bottom Right: Luxury 3D Obsidian-to-Amethyst CTA button */}
+        {/* Bottom Right: Start CTA button */}
         <div className="reference-hero-actions">
           <Link className="reference-start-button" href="/membership">
             Let's Start <span>↗</span>
@@ -157,7 +197,7 @@ export default function HomeHero() {
         </div>
       </section>
 
-      {/* Interactive Social Media Bar replacing the sportswear brand strip */}
+      {/* Social Media Bar with All Uniform Logos */}
       <section className="reference-social-bar" aria-label="Connect on Social Media">
         <div className="social-bar-inner">
           {socialLinks.map((social) => (
